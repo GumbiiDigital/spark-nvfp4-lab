@@ -1,0 +1,21 @@
+# Runtime outputs — never commit
+/results/
+/models/
+/logs/
+/queue/
+/state/
+/calib/
+/bin/
+
+# Transient files
+/events.log
+/heartbeat.txt
+/*.lock
+/*.pid
+/upload-stage/
+
+# OS / editor
+.DS_Store
+*.swp
+*.pyc
+__pycache__/
