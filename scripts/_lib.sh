@@ -17,7 +17,8 @@ ts() { date -u +"%Y-%m-%dT%H:%M:%SZ"; }
 
 log() {
   local lvl="$1"; shift
-  local line="$(ts) [$lvl] $*"
+  local line
+  line="$(ts) [$lvl] $*"
   echo "$line"
   echo "$line" >> "$SPARK_LAB_LOG"
 }

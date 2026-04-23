@@ -292,4 +292,25 @@ docker ps --filter name=trtllm -q | xargs -r docker stop
 
 ---
 
-*SOP version 0.1 — derived from the release-0 session (DeepSeek-R1-Distill-Llama-8B). Update after every release retro.*
+## 11. Changelog
+
+### v0.2 — 2026-04-23 (release-0.1)
+- Per-task quality gate thresholds (math/reasoning tightened to 3pp; see `TASK_DELTA_THRESHOLDS_PCT` in `render_card.py`).
+- Minimum-coverage gate: don't auto-publish if zero benchmark families completed.
+- 95% CI for the BF16↔NVFP4 delta surfaced in BENCHMARKS.md (unpaired normal approximation; paired bootstrap deferred to release-1 pending `--log_samples` re-run).
+- Full provenance in `manifest.json`: container digest, upstream base-model SHA, `spark-nvfp4-lab` git SHA, self-sha256 of `render_card.py`, eval context length, calibration metadata.
+- Card enrichments: headline delta on the card itself, on-disk + observed peak VRAM comparison, known-good `trtllm-serve` command, recommended-use block, tested/untested engine list, verify-this-release recipe, explicit "tasks NOT evaluated" section.
+- HF YAML override: explicit `tags: [nvfp4, fp4, 4-bit, tensorrt-llm, modelopt, …]` to bypass HF's auto `8-bit` misclassification on ModelOpt packed weights.
+- `--override-gate-exit` flag on `render_card.py` for documented manual overrides (records reason in manifest).
+- CI: GitHub Actions runs shellcheck (warning-level) on all `scripts/*.sh` and `tests/*.sh`, plus a fixture-based functional test of `render_card.py` that asserts invariants on the rendered README/BENCHMARKS/manifest.
+- SOP rule #9 added: HF `README.md` YAML license must be on HF's allowed list; `render_card.py --license <tag>` is the switch.
+
+### v0.1 — 2026-04-23 (release-0)
+- Initial SOP derived from release-0 session (DeepSeek-R1-Distill-Llama-8B).
+- 8 hard rules, incident response procedures, 10 known constraints.
+- Companion to first public artifact: [`GumbiiDigital/DeepSeek-R1-Distill-Llama-8B-NVFP4`](https://huggingface.co/GumbiiDigital/DeepSeek-R1-Distill-Llama-8B-NVFP4).
+
+---
+
+*Update after every release retro. Increment the version in the frontmatter of
+this file and add a dated entry above.*
