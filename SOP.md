@@ -53,7 +53,10 @@ Derived from the 2026-04-22/23 release-0 session (DeepSeek-R1-Distill-Llama-8B).
 df -h ~ | awk 'NR==2 {print $4, "free"}'                 # Need ≥50G per release
 # RAM + GPU
 free -h | awk 'NR==2 {print "host:", $7, "avail"}'       # Need ≥60G for BF16 HF-path fallback
-nvidia-smi --query-gpu=memory.free --format=csv         # Need model weights + KV budget
+# GB10 unified memory does NOT report memory.free — use used_memory aggregation instead.
+# 128 GiB total (~131072 MiB). Need (weights + KV cache + ~2-4 GiB overhead) MiB free.
+nvidia-smi --query-compute-apps=used_memory --format=csv,noheader \
+  | awk -F',' '{s+=$1} END {print "GPU used (MiB):", s+0}'
 # Port
 ss -ltn | grep :8000 && echo "PORT 8000 IN USE — resolve"
 docker ps --filter publish=8000
