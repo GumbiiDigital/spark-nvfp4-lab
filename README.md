@@ -1,5 +1,24 @@
 # Spark NVFP4 Lab
 
+<!-- GUMBII-DOCS:START -->
+## Repository Status
+
+- **Repository:** `GumbiiDigital/spark-nvfp4-lab`
+- **Title:** spark-nvfp4-lab
+- **Classification:** Active product (`active-product`)
+- **Visibility:** public
+- **Default branch:** `main`
+- **Summary:** Spark NVFP4 Lab
+- **Primary contents:** Root folders: `.github`, `scripts`, `tests` Key root files: `.gitignore`, `LICENSE`, `SOP.md`
+- **Stack/signals:** Shell, Python, Python
+- **Topics:** `audit-high`, `gumbii`, `python`, `active-product`
+- **Recommended action:** Keep active; add README/status notes if missing.
+- **Documentation refreshed:** 2026-05-06
+
+This section is maintained by GumbiiDigital repository hygiene tooling. Preserve the markers when editing.
+<!-- GUMBII-DOCS:END -->
+
+
 [![CI](https://github.com/GumbiiDigital/spark-nvfp4-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/GumbiiDigital/spark-nvfp4-lab/actions/workflows/ci.yml)
 
 Quantize any HuggingFace model to **NVFP4**, evaluate it against its BF16 baseline on the same hardware, publish a model card with real numbers — not guesses.
